@@ -1,1 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Manager App</title>
+    <link rel="icon" type="image/x-icon" href="./TaskApp-1.jpg" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="add_button_contaienr">
+        <button id="add-task-button" class="black-button add_button">
+          Add
+        </button>
+      </div>
 
+      <div id="task-container">
+        <div id="open-section" class="sections">
+          <h2>Open</h2>
+          <ul id="open" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
+        </div>
+        <div id="in-progress-section" class="sections">
+          <h2>In Progress</h2>
+          <ul
+            id="inProgress"
+            ondrop="drop(event)"
+            ondragover="allowDrop(event)"
+          ></ul>
+        </div>
+        <div id="in-review-section" class="sections">
+          <h2>In Review</h2>
+          <ul
+            id="inReview"
+            ondrop="drop(event)"
+            ondragover="allowDrop(event)"
+          ></ul>
+        </div>
+        <div id="done-section" class="sections">
+          <h2>Done</h2>
+          <ul id="done" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
+        </div>
+      </div>
+
+      <div id="task-form" style="display: none">
+        <form>
+          <span id="error"></span>
+          <label for="task-name">Task Name:</label>
+          <input type="text" id="task-name" name="task-name" />
+          <br />
+          <label for="start-date">Start Date</label>
+          <input type="date" name="start-date" id="start-date" />
+          <label for="end-date">End Date</label>
+          <input type="date" name="end-date" id="end-date" />
+          <label for="desc">Add Description</label>
+          <textarea name="desc" id="desc" rows="6"></textarea>
+          <label for="task-status">Status:</label>
+          <select id="task-status">
+            <option value="open">Open</option>
+            <option value="inProgress">In Progress</option>
+            <option value="inReview">In Review</option>
+            <option value="done">Done</option>
+          </select>
+          <br /><br />
+          <div class="button_container">
+            <button
+              type="submit"
+              class="black-button"
+              id="submit-button"
+              style="display: none"
+            >
+              Add
+            </button>
+            <button
+              type="submit"
+              class="black-button"
+              id="save-button"
+              style="display: none"
+            >
+              Save
+            </button>
+            <button class="black-button" id="cancel-button">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- HTML code for the task manager -->
+    <script src="App.js"></script>
+  </body>
+</html>

@@ -1,1 +1,206 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+body {
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: wheat;
+}
 
+.sections {
+  padding-block: 20px;
+  padding-inline: 3px;
+  padding-block-end: 3px;
+  border-radius: 5px;
+  /* background-color: rgb(228, 235, 232); */
+  /* box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px; */
+}
+
+textarea {
+  resize: vertical;
+}
+
+h2 {
+  text-align: left;
+  margin-left: 10px;
+  text-transform: uppercase;
+  text-decoration: underline;
+  color: black;
+  font-weight: bolder;
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 5px;
+  /* box-shadow: 5px 5px 0px red; */
+}
+
+li {
+  margin: 10px 0;
+  cursor: pointer;
+  /* box-shadow: 3px 3xp red; */
+  color: white;
+  background-color: black;
+}
+
+button {
+  color: white !important;
+  background: unset;
+  border: unset;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-flex;
+  gap: 5px;
+  color: black;
+}
+
+.black-button {
+  /* background-color: rgb(49, 139, 90); */
+  border: 0 solid #e2e8f0;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #0d172a;
+  /* color: #0d172a; */
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Basier circle", -apple-system, system-ui, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 1rem 1.6rem;
+  text-align: center;
+  text-decoration: none #0d172a solid;
+  text-decoration-thickness: auto;
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+  /* box-shadow: 0px 1px 2px rgba(166, 175, 195, 0.25); */
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.black-button:hover {
+  background-color: #1e293b;
+  color: black;
+}
+
+@media (min-width: 768px) {
+  .black-button {
+    font-size: 1.125rem;
+    padding: 1rem 2rem;
+  }
+}
+
+form {
+  position: fixed;
+  inset: 0;
+  top: 30%;
+  max-width: 600px;
+  margin-inline: auto;
+  background: wheat;
+  max-height: max-content;
+  color: black;
+  border-radius: 12px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  z-index: 999;
+  color: rgba(0, 0, 0, 1);
+  padding: 20px 30px;
+  background: none;
+  /* background-color: black; */
+}
+form label {
+  display: block;
+}
+form :is(input, select, textarea) {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+form .button_container {
+  text-align: center;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+#task-form {
+  position: absolute;
+  inset: 0;
+  isolation: isolate;
+}
+.container {
+  padding-inline: 25px;
+  width: 100%;
+  margin-inline: auto;
+}
+#task-form:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.add_button_contaienr {
+  text-align: center;
+  margin-block: 30px;
+}
+#task-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-inline: auto;
+}
+ul {
+  min-height: 200px;
+  /* background-color: rgb(95, 93, 93); */
+  border-radius: 3px;
+  overflow-y: auto;
+}
+ul li {
+  margin-block: 5px;
+  padding: 10px 15px;
+  border-radius: 3px;
+  /* box-shadow: 3px 3pxx red; */
+}
+ul li:first-child {
+  margin-block-start: 0;
+}
+ul li:last-child {
+  margin-block-end: 0;
+}
+@media all and (min-width: 720px) {
+  #task-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  ul {
+    height: calc(50vh - 152px);
+  }
+}
+@media all and (min-width: 1080px) {
+  #task-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  ul {
+    height: calc(50vh - 220px);
+  }
+  .container {
+    max-width: calc(100vw - 1%);
+  }
+  ul {
+    height: calc(100vh - 220px);
+  }
+}
+#error {
+  text-transform: uppercase;
+  text-decoration: underline;
+  font-weight: bolder;
+  color: red;
+  text-align: center;
+  display: block;
+  font-size: 14px;
+}
