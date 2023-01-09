@@ -105,14 +105,14 @@ form {
   margin-inline: auto;
   background: wheat;
   max-height: max-content;
-  color: black;
+  color: wheat;
   border-radius: 12px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   z-index: 999;
   color: rgba(0, 0, 0, 1);
   padding: 20px 30px;
   background: none;
-  /* background-color: black; */
+  background-color: black;
 }
 form label {
   display: block;

@@ -51,7 +51,7 @@ submitButton.addEventListener("click", (event) => {
 
   const name = document.getElementById("task-name").value;
   const description = document.getElementById("desc").value;
-  const taskStatus = document.getElementById("task-status").value;
+  const taskStatus = "open";
   const startDate = document.querySelector("#start-date");
   const endDate = document.querySelector("#end-date");
   if (!name || !description) {
