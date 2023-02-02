@@ -25,10 +25,16 @@ let allTasks = [
   { name: "inReview", tasks: [] },
   { name: "done", tasks: [] },
 ];
-const clearInputs = () => {
-  formInputName.value = "";
-  formInputDesc.value = "";
-  formInputStatus.value = "";
+// Set in localStorage
+const saveData = () => {
+  const tasks = JSON.stringify(allTasks);
+  localStorage.setItem("tasks", tasks);
+};
+// get from localStorage
+const getDataFromStorage = () => {
+  const tasks = localStorage.getItem("tasks");
+  allTasks = JSON.parse(tasks) ? JSON.parse(tasks) : allTasks;
+  return allTasks;
 };
 
 addButton.addEventListener("click", (event) => {
@@ -36,14 +42,34 @@ addButton.addEventListener("click", (event) => {
   formVisibility.style.display = "block";
   submitButton.style.display = "block";
 });
+// clearing the input fields
+const clearInputfield = () => {
+  formInputName.value = "";
+  formInputDesc.value = "";
+  formInputStatus.value = "";
+};
+const hideFormAndBtns = () => {
+  formVisibility.style.display = "none";
+  submitButton.style.display = "none";
+};
+
+document
+  .getElementById("task-container")
+  .addEventListener("click", () => hideFormAndBtns());
+
+// display the form and submit buttons
+
+const displayFormAndBtn = () => {
+  formVisibility.style.display = "block";
+  submitButton.style.display = "block";
+};
 
 cancelButton.addEventListener("click", (event) => {
   event.preventDefault();
   error.innerText = "";
-  formVisibility.style.display = "none";
-  submitButton.style.display = "none";
+  hideFormAndBtns();
   saveButton.style.display = "none";
-  clearInputs();
+  clearInputfield();
 });
 
 submitButton.addEventListener("click", (event) => {
@@ -51,20 +77,12 @@ submitButton.addEventListener("click", (event) => {
 
   const name = document.getElementById("task-name").value;
   const description = document.getElementById("desc").value;
-  const taskStatus = "open";
-  const startDate = document.querySelector("#start-date");
-  const endDate = document.querySelector("#end-date");
+  const taskStatus = document.getElementById("task-status").value;
   if (!name || !description) {
     error.innerText = "Please enter name and description";
     return;
   }
-  const newTask = {
-    id: `${new Date().getTime()}`,
-    name,
-    description,
-    startDate,
-    endDate,
-  };
+  const newTask = { id: `${new Date().getTime()}`, name, description };
 
   const taskItem = document.createElement("li");
   taskItem.innerText = name;
@@ -99,31 +117,19 @@ submitButton.addEventListener("click", (event) => {
   saveData();
 
   error.innerText = "";
-  formVisibility.style.display = "none";
-  submitButton.style.display = "none";
+  hideFormAndBtns();
 });
-
-function saveData() {
-  const tasks = JSON.stringify(allTasks);
-  localStorage.setItem("tasks", tasks);
-}
-
-function getDataFromStorage() {
-  const tasks = localStorage.getItem("tasks");
-  allTasks = JSON.parse(tasks) ? JSON.parse(tasks) : allTasks;
-  return allTasks;
-}
 
 function allowDrop(ev) {
   ev.preventDefault();
 }
 
-function drag(ev) {
+const drag = (ev) => {
   source = ev.target.parentElement.getAttribute("id");
   ev.dataTransfer.setData("text", ev.target.id);
-}
+};
 
-function drop(ev) {
+const drop = (ev) => {
   ev.preventDefault();
   var data = ev.dataTransfer.getData("text");
   const child = document.getElementById(data);
@@ -137,7 +143,7 @@ function drop(ev) {
   const description = child.getAttribute("data-description");
   const taskData = { text, id, description };
   modifyTasklist(source, destination, taskData);
-}
+};
 
 const modifyTasklist = (
   source,
@@ -206,13 +212,13 @@ const modifyTasklist = (
   saveData();
 };
 
-function EditTask(event) {
+const EditTask = (event) => {
   event.preventDefault();
   formVisibility.style.display = "block";
   saveButton.style.display = "block";
   EDIT_ELEMENT = event.target;
   formValue(event);
-}
+};
 
 saveButton.addEventListener("click", (event) => {
   event.preventDefault();
@@ -230,25 +236,20 @@ saveButton.addEventListener("click", (event) => {
   // setting id to null
   EDIT_ELEMENT = null;
   formVisibility.style.display = "none";
-  formInputName.value = "";
-  formInputDesc.value = "";
-  formInputStatus.value = "";
+  clearInputfield();
 });
 
-function formValue(event) {
+const formValue = (event) => {
   const element = event.target;
   const source = element.parentElement.getAttribute("id");
-
   formInputName.value = element.innerText;
   formInputDesc.value = element.getAttribute("data-description");
   formInputStatus.value = source;
-}
+};
 
-function renderList(parentId, data) {
+const renderList = (parentId, data) => {
   const parentElement = document.getElementById(parentId);
-
   const { text, id, description } = data;
-
   const taskItem = document.createElement("li");
   taskItem.innerText = text;
   taskItem.setAttribute("id", `${id}`);
@@ -257,9 +258,9 @@ function renderList(parentId, data) {
   taskItem.setAttribute("ondragstart", "drag(event)");
   taskItem.setAttribute("onclick", "EditTask(event)");
   parentElement.appendChild(taskItem);
-}
+};
 
-function renderData() {
+const renderData = () => {
   getDataFromStorage();
   const sectoins = ["open", "inProgress", "inReview", "done"];
 
@@ -276,6 +277,6 @@ function renderData() {
       renderList(parentId, data);
     });
   });
-}
+};
 
 renderData();

@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Task Manager App</title>
-    <link rel="icon" type="image/x-icon" href="./TaskApp-1.jpg" />
+    <title>Task Manager</title>
+    <link rel="icon" type="image/x-icon" href="favicon.png" />
     <link rel="stylesheet" href="styles.css" />
     <link
       rel="stylesheet"
@@ -19,7 +19,7 @@
     <div class="container">
       <div class="add_button_contaienr">
         <button id="add-task-button" class="black-button add_button">
-          Add
+          Add Task <span><i class="fa fa-plus-circle"></i></span>
         </button>
       </div>
 
@@ -53,21 +53,18 @@
       <div id="task-form" style="display: none">
         <form>
           <span id="error"></span>
-
-          <input
-            type="text"
-            id="task-name"
-            name="task-name"
-            placeholder="Enter the title"
-          />
+          <label for="task-name">Task Name:</label>
+          <input type="text" id="task-name" name="task-name" />
           <br />
-          <textarea
-            name="desc"
-            id="desc"
-            rows="6"
-            placeholder="Details"
-          ></textarea>
-
+          <label for="desc">Add Description</label>
+          <textarea name="desc" id="desc" rows="6"></textarea>
+          <label for="task-status">Status:</label>
+          <select id="task-status">
+            <option value="open">Open</option>
+            <option value="inProgress">In Progress</option>
+            <option value="inReview">In Review</option>
+            <option value="done">Done</option>
+          </select>
           <br /><br />
           <div class="button_container">
             <button
@@ -76,7 +73,7 @@
               id="submit-button"
               style="display: none"
             >
-              Add
+              Submit
             </button>
             <button
               type="submit"
